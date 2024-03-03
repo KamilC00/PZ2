@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { FormsModule, NgForm } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 
 @Component({
@@ -16,13 +16,19 @@ export class LogowanieComponent {
     username: '',
     password: ''
   }
-    errorMessage: string = '';
+    errorMessage?: boolean = undefined;
+    loginMessage?: boolean = undefined;
 
   logowanie() {
+    this.loginMessage = undefined
+    this.errorMessage = undefined
     if (this.formData.username === 'admin' && this.formData.password === 'admin') {
+      this.errorMessage = false
+      this.loginMessage = true
       console.log('Zalogowano poprawnie.')
     } else {
-      //this.errorMessage = 'Błąd logowania'
+      this.errorMessage = true
+      this.loginMessage = false
       console.error('Błąd logowania.')
     }
   }

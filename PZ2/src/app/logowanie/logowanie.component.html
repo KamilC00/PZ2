@@ -1,6 +1,5 @@
 <div class="logowanie">
   <h2>Logowanie</h2>
-  <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}></div>
   <form (ngSubmit)="logowanie()" #form="ngForm">
     <div class="form-group">
       <label for="username">Użytkownik:</label>
@@ -11,6 +10,8 @@
       <input type="password" id="password" name="password" [(ngModel)]="formData.password" required>
     </div>
     <button type="submit" [disabled]="form.invalid">Zaloguj</button>
+  <div *ngIf="errorMessage" class="error-message">Błędne dane logowania</div>
+  <div *ngIf="loginMessage" class="login-message">Witamy</div>
   </form>
 </div>
 

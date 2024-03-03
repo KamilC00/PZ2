@@ -2,6 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LogowanieComponent } from './logowanie.component';
 
+import { By } from '@angular/platform-browser';
+
 describe('LogowanieComponent', () => {
   let component: LogowanieComponent;
   let fixture: ComponentFixture<LogowanieComponent>;
@@ -51,7 +53,8 @@ describe('LogowanieComponent', () => {
     submitButton.click();
     fixture.detectChanges();
 
-    const errorMessage = fixture.debugElement.nativeElement.querySelector('.error-message');
+    const errorMessage = fixture.debugElement.query(By.css('.error-message'))
+    //const errorMessage = fixture.debugElement.nativeElement.querySelector('.error-message');
     expect(errorMessage).toBeTruthy();
   });
 
@@ -60,14 +63,14 @@ describe('LogowanieComponent', () => {
     const passwordField = fixture.debugElement.nativeElement.querySelector('input[name="password"]');
     const submitButton = fixture.debugElement.nativeElement.querySelector('button[type="submit"]');
 
-    usernameField.value = 'exampleUser';
-    passwordField.value = 'validPassword';
+    usernameField.value = 'admin';
+    passwordField.value = 'admin';
 
     submitButton.click();
     fixture.detectChanges();
 
-    const errorMessage = fixture.debugElement.nativeElement.querySelector('.error-message');
+    const errorMessage = fixture.debugElement.query(By.css('.login-message'))
+    //const errorMessage = fixture.debugElement.nativeElement.querySelector('.error-message');
     expect(errorMessage).toBeFalsy();
   });
-
 });
